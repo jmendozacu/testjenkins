@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Execute Script') {
             steps {
-                sh deployments/scripts/config_stage.sh
+                sh ./deployments/scripts/config_stage.sh
             }
         }
     }
