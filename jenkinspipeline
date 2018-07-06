@@ -2,7 +2,7 @@ pipeline {
     stages {
         stage('Execute Script') {
             steps {
-               bin/mage deploy stage
+               sh 'bin/mage deploy stage'
             }
         }
     }
