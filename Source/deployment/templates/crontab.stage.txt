@@ -1,6 +1,0 @@
-*/2 * * * * /home/ec2-user/Scripts/all_scripts.sh
-30 5 * * * /opt/mysql-backup.sh
-45 5 * * * /opt/efs-backup.sh
-*/10 * * * * sudo -u webapp php /var/www/html/bin/PaversDataEnrich.php
-0 21 * * * sudo -u webapp php /var/www/html/bin/JsonDownloadAndSkuImport.php
-*/5 * * * * sudo -u webapp php /var/www/html/bin/QualityActiveFlag.php
