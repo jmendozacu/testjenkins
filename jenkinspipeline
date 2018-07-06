@@ -2,7 +2,6 @@ pipeline {
     agent {
         docker { 
           image 'yatin03/amazonlinux:phpapache'
-          args '-v $JENKINS_HOME/workspace/testproject2/Source:/var/www/html'
         }
     }
     stages {
