@@ -1,0 +1,288 @@
+<?php 
+use Pimcore\Tool\Admin as AdminTool;
+$user = AdminTool::getCurrentUser();
+return [
+    "completeness-report" => [
+        "name" => "completeness-report",
+        "sql" => "",
+        "dataSourceConfig" => [
+            [
+                "sql" => "count(*) as Total, completenessPercentage as PerValue, If(completenessPercentage > 50,'> 50%','< 50%') as Percentage",
+                "from" => "object_8",
+                "where" => "completenessPercentage > 50 OR completenessPercentage < 50",
+                "groupby" => "completenessPercentage",
+                "sqlText" => "SELECT count(*) as Total, completenessPercentage as PerValue, If(completenessPercentage > 50,'> 50%','< 50%') as Percentage FROM object_8 WHERE completenessPercentage > 50 OR completenessPercentage < 50 GROUP BY completenessPercentage",
+                "type" => "sql"
+            ]
+        ],
+        "columnConfiguration" => [
+            [
+                "name" => "Total",
+                "display" => TRUE,
+                "export" => TRUE,
+                "order" => TRUE,
+                "width" => NULL,
+                "label" => "SKU's",
+                "filter" => "string",
+                "displayType" => "text",
+                "id" => "extModel1847-5"
+            ],
+            [
+                "name" => "PerValue",
+                "display" => TRUE,
+                "export" => TRUE,
+                "order" => TRUE,
+                "width" => "",
+                "label" => "Completeness %",
+                "id" => "extModel1847-6"
+            ],
+            [
+                "name" => "Percentage",
+                "display" => FALSE,
+                "export" => FALSE,
+                "order" => FALSE,
+                "width" => "",
+                "label" => "",
+                "id" => "extModel1847-7"
+            ]
+        ],
+        "niceName" => "Completeness Report",
+        "group" => "",
+        "groupIconClass" => "",
+        "iconClass" => "",
+        "menuShortcut" => FALSE,
+        "reportClass" => "",
+        "chartType" => "bar",
+        "pieColumn" => "Total",
+        "pieLabelColumn" => "Percentage",
+        "xAxis" => "PerValue",
+        "yAxis" => [
+            "Total"
+        ],
+        "modificationDate" => 1517323725,
+        "creationDate" => 1516881751,
+        "id" => "completeness-report"
+    ],
+    "updated-sku-report" => [
+        "name" => "updated-sku-report",
+        "sql" => "",
+        "dataSourceConfig" => [
+            [
+                "sql" => "COUNT(*) AS SKU, if(p.data = 'GB', 'UK', p.data) AS Country",
+                "from" => "object_8 as o8 inner join \n    properties as p on p.cid = o8.o_parentId",
+                "where" => "",
+                "groupby" => "group by p.data",
+                "sqlText" => "SELECT COUNT(*) AS SKU, if(p.data = 'GB', 'UK', p.data) AS Country FROM object_8 as o8 inner join \n    properties as p on p.cid = o8.o_parentId GROUP BY group by p.data",
+                "type" => "sql"
+            ]
+        ],
+        "columnConfiguration" => [
+            [
+                "name" => "SKU",
+                "display" => TRUE,
+                "export" => TRUE,
+                "order" => TRUE,
+                "width" => "",
+                "label" => "",
+                "id" => "extModel2172-3"
+            ],
+            [
+                "name" => "Country",
+                "display" => TRUE,
+                "export" => TRUE,
+                "order" => TRUE,
+                "width" => "",
+                "label" => "",
+                "id" => "extModel2172-4"
+            ]
+        ],
+        "niceName" => "SKU's Per Country",
+        "group" => "",
+        "groupIconClass" => "",
+        "iconClass" => "",
+        "menuShortcut" => FALSE,
+        "reportClass" => "",
+        "chartType" => "pie",
+        "pieColumn" => "SKU",
+        "pieLabelColumn" => "Country",
+        "xAxis" => NULL,
+        "yAxis" => [
+
+        ],
+        "modificationDate" => 1517324194,
+        "creationDate" => 1517312459,
+        "id" => "updated-sku-report"
+    ],
+    "custom-workflow-sku" => [
+        "name" => "custom-workflow-sku",
+        "sql" => "",
+        "dataSourceConfig" => [
+            [
+                "sql" => "   coalesce(UPPER(u.name), 'SYSTEM') as User,\n    o.o_className as 'Class Name',\n    wf.cid as 'Object Id',\n  Case When  o.o_className!='ShipmentPlant' and o.o_className!='Sales' Then o.o_key \n    else\nSUBSTR(o.o_key,INSTR( o.o_key,'_')+1)\nEND as 'SAP Material Number',\n   Case When  o.o_className='Sales' Then o.o_key END as 'Sales_SAP Code',\n   Case When  o.o_className='ShipmentPlant' Then o.o_key END as 'Shipment_SAP Code',\n   COALESCE(brick.SAPShortText,\n            pavers.SAPShortText,\n            wall.SAPShortText,\n            roof.SAPShortText) as 'SAP Short Text',\n    CASE\n        WHEN o.o_published = 1 THEN 'Yes'\n        ELSE 'No'\n    END AS Published,\n    from_unixtime(o.o_creationDate, '%Y-%d-%m') as 'Created On',\n    from_unixtime(o.o_modificationDate, '%Y-%d-%m') as 'Last Modified On',\n    DATEDIFF(now(),\n            from_unixtime(o.o_modificationDate)) as 'Aging (Days)',\n    wf.status AS 'Workflow Status',\n    COALESCE(copi1.text,\n            copi2.text,\n            copi3.text,\n            copi8.text) as 'Country of Product Initiation'",
+                "from" => " element_workflow_state as wf\n        join\n    objects as o ON wf.cid = o.o_id\n        left join\n    users as u ON o.o_userModification = u.id\n        left join\n    object_localized_data_1 as brick ON o.o_id = brick.ooo_id\n        and brick.language = '".$user->getLanguage()."'\n        left join\n    object_localized_data_2 as pavers ON o.o_id = pavers.ooo_id\n        and pavers.language = '".$user->getLanguage()."'\n        left join\n    object_localized_data_3 as wall ON o.o_id = wall.ooo_id\n        and wall.language = '".$user->getLanguage()."'\n        left join\n    object_localized_data_8 as roof ON o.o_id = roof.ooo_id\n        and roof.language = '".$user->getLanguage()."'\n        left join\n    object_relations_1 br ON br.src_id = wf.cid\n        and br.fieldname = 'countryOfProductInitiation'\n        left join\n    object_localized_data_89 copi1 ON copi1.ooo_id = br.dest_id\n        and copi1.language = '".$user->getLanguage()."'\n        left join\n    object_relations_2 pr ON pr.src_id = wf.cid\n        and pr.fieldname = 'countryOfProductInitiation'\n        left join\n    object_localized_data_89 copi2 ON copi2.ooo_id = pr.dest_id\n        and copi2.language = '".$user->getLanguage()."'\n        left join\n    object_relations_3 wl ON wl.src_id = wf.cid\n        and wl.fieldname = 'countryOfProductInitiation'\n        left join\n    object_localized_data_89 copi3 ON copi3.ooo_id = wl.dest_id\n        and copi3.language = '".$user->getLanguage()."'\n        left join\n    object_relations_8 rf ON rf.src_id = wf.cid\n        and rf.fieldname = 'countryOfProductInitiation'\n        left join\n    object_localized_data_89 copi8 ON copi8.ooo_id = rf.dest_id\n        and copi8.language = '".$user->getLanguage()."'",
+                "where" => "",
+                "groupby" => "",
+                "sqlText" => "SELECT    coalesce(UPPER(u.name), 'SYSTEM') as User,\n    o.o_className as 'Class Name',\n    wf.cid as 'Object Id',\n  Case When  o.o_className!='ShipmentPlant' and o.o_className!='Sales' Then o.o_key \n    else\nSUBSTR(o.o_key,INSTR( o.o_key,'_')+1)\nEND as 'SAP Material Number',\n   Case When  o.o_className='Sales' Then o.o_key END as 'Sales_SAP Code',\n   Case When  o.o_className='ShipmentPlant' Then o.o_key END as 'Shipment_SAP Code',\n   COALESCE(brick.SAPShortText,\n            pavers.SAPShortText,\n            wall.SAPShortText,\n            roof.SAPShortText) as 'SAP Short Text',\n    CASE\n        WHEN o.o_published = 1 THEN 'Yes'\n        ELSE 'No'\n    END AS Published,\n    from_unixtime(o.o_creationDate, '%Y-%d-%m') as 'Created On',\n    from_unixtime(o.o_modificationDate, '%Y-%d-%m') as 'Last Modified On',\n    DATEDIFF(now(),\n            from_unixtime(o.o_modificationDate)) as 'Aging (Days)',\n    wf.status AS 'Workflow Status',\n    COALESCE(copi1.text,\n            copi2.text,\n            copi3.text,\n            copi8.text) as 'Country of Product Initiation' FROM  element_workflow_state as wf\n        join\n    objects as o ON wf.cid = o.o_id\n        left join\n    users as u ON o.o_userModification = u.id\n        left join\n    object_localized_data_1 as brick ON o.o_id = brick.ooo_id\n        and brick.language = 'en'\n        left join\n    object_localized_data_2 as pavers ON o.o_id = pavers.ooo_id\n        and pavers.language = 'en'\n        left join\n    object_localized_data_3 as wall ON o.o_id = wall.ooo_id\n        and wall.language = 'en'\n        left join\n    object_localized_data_8 as roof ON o.o_id = roof.ooo_id\n        and roof.language = 'en'\n        left join\n    object_relations_1 br ON br.src_id = wf.cid\n        and br.fieldname = 'countryOfProductInitiation'\n        left join\n    object_localized_data_89 copi1 ON copi1.ooo_id = br.dest_id\n        and copi1.language = 'en'\n        left join\n    object_relations_2 pr ON pr.src_id = wf.cid\n        and pr.fieldname = 'countryOfProductInitiation'\n        left join\n    object_localized_data_89 copi2 ON copi2.ooo_id = pr.dest_id\n        and copi2.language = 'en'\n        left join\n    object_relations_3 wl ON wl.src_id = wf.cid\n        and wl.fieldname = 'countryOfProductInitiation'\n        left join\n    object_localized_data_89 copi3 ON copi3.ooo_id = wl.dest_id\n        and copi3.language = 'en'\n        left join\n    object_relations_8 rf ON rf.src_id = wf.cid\n        and rf.fieldname = 'countryOfProductInitiation'\n        left join\n    object_localized_data_89 copi8 ON copi8.ooo_id = rf.dest_id\n        and copi8.language = 'en'",
+                "type" => "sql"
+            ]
+        ],
+        "columnConfiguration" => [
+            [
+                "name" => "Object Id",
+                "display" => TRUE,
+                "export" => TRUE,
+                "order" => TRUE,
+                "width" => "",
+                "label" => "",
+                "filter" => "string",
+                "filter_drilldown" => "",
+                "columnAction" => "openObject",
+                "id" => "extModel1343-3"
+            ],
+            [
+                "name" => "SAP Material Number",
+                "display" => TRUE,
+                "export" => TRUE,
+                "order" => TRUE,
+                "width" => "",
+                "label" => "",
+                "filter" => "string",
+                "filter_drilldown" => "",
+                "id" => "extModel1343-4"
+            ],
+            [
+                "name" => "Sales_SAP Code",
+                "display" => TRUE,
+                "export" => TRUE,
+                "order" => TRUE,
+                "width" => "",
+                "label" => "",
+                "filter" => "string",
+                "id" => "extModel1343-5"
+            ],
+            [
+                "name" => "Shipment_SAP Code",
+                "display" => TRUE,
+                "export" => TRUE,
+                "order" => TRUE,
+                "width" => "",
+                "label" => "",
+                "filter" => "string",
+                "id" => "extModel1343-6"
+            ],
+            [
+                "name" => "SAP Short Text",
+                "display" => TRUE,
+                "export" => TRUE,
+                "order" => TRUE,
+                "width" => "",
+                "label" => "",
+                "filter" => "string",
+                "filter_drilldown" => "",
+                "id" => "extModel1343-7"
+            ],
+            [
+                "name" => "Country of Product Initiation",
+                "display" => TRUE,
+                "export" => TRUE,
+                "order" => TRUE,
+                "width" => "",
+                "label" => "",
+                "id" => "extModel1343-21"
+            ],
+            [
+                "name" => "Published",
+                "display" => TRUE,
+                "export" => TRUE,
+                "order" => TRUE,
+                "width" => "",
+                "label" => "",
+                "filter" => "string",
+                "filter_drilldown" => "",
+                "id" => "extModel1343-9"
+            ],
+            [
+                "name" => "Created On",
+                "display" => TRUE,
+                "export" => TRUE,
+                "order" => TRUE,
+                "width" => "",
+                "label" => "",
+                "filter" => "date",
+                "filter_drilldown" => "",
+                "id" => "extModel1343-10"
+            ],
+            [
+                "name" => "Last Modified On",
+                "display" => TRUE,
+                "export" => TRUE,
+                "order" => TRUE,
+                "width" => "",
+                "label" => "",
+                "filter" => "date",
+                "filter_drilldown" => "",
+                "id" => "extModel1343-11"
+            ],
+            [
+                "name" => "Aging (Days)",
+                "display" => TRUE,
+                "export" => TRUE,
+                "order" => TRUE,
+                "width" => "",
+                "label" => "",
+                "filter" => "numeric",
+                "filter_drilldown" => "",
+                "id" => "extModel1343-12"
+            ],
+            [
+                "name" => "User",
+                "display" => TRUE,
+                "export" => TRUE,
+                "order" => TRUE,
+                "width" => "",
+                "label" => "",
+                "filter" => "string",
+                "filter_drilldown" => "",
+                "id" => "extModel1343-13"
+            ],
+            [
+                "name" => "Class Name",
+                "display" => TRUE,
+                "export" => TRUE,
+                "order" => TRUE,
+                "width" => "",
+                "label" => "",
+                "filter" => "string",
+                "filter_drilldown" => "",
+                "id" => "extModel1343-14"
+            ],
+            [
+                "name" => "Workflow Status",
+                "display" => TRUE,
+                "export" => TRUE,
+                "order" => TRUE,
+                "width" => "",
+                "label" => "",
+                "filter" => "string",
+                "filter_drilldown" => "",
+                "id" => "extModel1343-15"
+            ]
+        ],
+        "niceName" => "SKUs Workflow Report",
+        "group" => "",
+        "groupIconClass" => "",
+        "iconClass" => "",
+        "menuShortcut" => TRUE,
+        "reportClass" => "",
+        "chartType" => "",
+        "pieColumn" => "status",
+        "pieLabelColumn" => "cid",
+        "xAxis" => NULL,
+        "yAxis" => [
+
+        ],
+        "modificationDate" => 1528448793,
+        "creationDate" => 1522999431,
+        "id" => "custom-workflow-sku"
+    ]
+];

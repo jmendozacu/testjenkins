@@ -1,11 +1,14 @@
 pipeline {
     agent {
-        docker { image 'node:7-alpine' }
+        docker { 
+          image 'yatin03/amazonlinux:phpapache'
+          args '-v $JENKINS_HOME/workspace/testproject2/Source:/var/www/html'
+        }
     }
     stages {
-        stage('Test') {
+        stage('Execute Script') {
             steps {
-                sh 'node --version'
+                sh deployments/scripts/config_stage.sh
             }
         }
     }

@@ -1,0 +1,27 @@
+#stage
+deployment:
+  user: ec2-user
+  from: ./
+  to: /var/www/html
+  excludes:
+    - web/var
+    - var/classes
+    - var/config
+    - var/sessions
+    - var/versions
+    - var/cache
+releases:
+  enabled: true
+  max: 10
+  symlink: current
+  directory: releases
+hosts:
+  - 34.252.130.25
+tasks:
+  pre-deploy:
+    - general/manually:
+  on-deploy:
+    - general/manually:
+      - ./deployment/scripts/config_stage.sh
+  post-release:
+  post-deploy:
