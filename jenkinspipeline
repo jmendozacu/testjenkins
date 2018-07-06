@@ -8,9 +8,7 @@ pipeline {
     stages {
         stage('Execute Script') {
             steps {
-                sh 'pwd'
-                sh 'ls -lahtr'
-                sh 'ls -lahtr deployment'
+                sh '/bin/bash deployment/scripts/config_stage.sh'
             }
         }
     }
