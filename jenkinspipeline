@@ -8,8 +8,7 @@ pipeline {
     stages {
         stage('Execute Script') {
             steps {
-               sh 'cp -r *.* /var/www/html' 
-               sh 'ls -lahtr /var/www/html'
+               sh 'ls -lahtr /var/www' 
             }
         }
     }
