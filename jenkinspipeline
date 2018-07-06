@@ -8,7 +8,8 @@ pipeline {
     stages {
         stage('Execute Script') {
             steps {
-                sh 'ls -lahtr /var/www/html'
+                sh 'ls -lahtr /var/lib/jenkins/workspace/testproject2'
+                sh 'ls -lahtr /var/lib/jenkins/workspace/testproject2/Source'
             }
         }
     }
