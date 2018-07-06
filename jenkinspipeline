@@ -1,14 +1,8 @@
 pipeline {
-    agent {
-        docker { 
-          image 'yatin03/amazonlinux:phpapache2'
-          args '-v $JENKINS_HOME/workspace/testproject2/Source:/var/www/html'
-        }
-    }
     stages {
         stage('Execute Script') {
             steps {
-               sh 'w'
+               bin/mage deploy stage
             }
         }
     }
