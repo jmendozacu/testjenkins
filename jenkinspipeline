@@ -8,17 +8,17 @@ pipeline {
     stages {
         stage('Execute Script') {
             steps {
-               sh 'cp -r update-scripts /var/www/html'
-               sh 'cp -r src /var/www/html'
-               sh 'cp -r pimcore /var/www/html'
-               sh 'cp -r vendor /var/www/html'
-               sh 'cp -r app /var/www/html'
-               sh 'cp -r web /var/www/html'
-               sh 'cp -r var /var/www/html'
-               sh 'cp -r deployment /var/www/html'
-               sh 'cp -r composer.json /var/www/html'
-               sh 'cp -r bin /var/www/html' 
-               sh 'cp -r .mage /var/www/html'
+               sh 'mv update-scripts /var/www/html'
+               sh 'mv src /var/www/html'
+               sh 'mv pimcore /var/www/html'
+               sh 'mv vendor /var/www/html'
+               sh 'mv app /var/www/html'
+               sh 'mv web /var/www/html'
+               sh 'mv var /var/www/html'
+               sh 'mv deployment /var/www/html'
+               sh 'mv composer.json /var/www/html'
+               sh 'mv bin /var/www/html' 
+               sh 'mv .mage /var/www/html'
                sh 'ls -lahtr /var/www/html'
             }
         }
