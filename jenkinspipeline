@@ -1,0 +1,15 @@
+pipeline {
+    agent {
+      node {
+        label 'my-defined-label'
+        customWorkspace '$JENKINS_HOME/workspace/testproject2'
+      }
+    }
+    stages {
+        stage('Execute Script') {
+            steps {
+               sh 'bin/mage deploy stage'
+            }
+        }
+    }
+}

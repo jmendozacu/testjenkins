@@ -1,0 +1,3 @@
+*/2 * * * * /home/ec2-user/Scripts/all_scripts.sh
+30 5 * * * /opt/mysql-backup.sh
+45 5 * * * /opt/efs-backup.sh

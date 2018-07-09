@@ -1,0 +1,10 @@
+<?php 
+
+return [
+    "bundle" => [
+        "GpiBundle\\GpiBundle" => TRUE,
+        "LoggerBundle\\LoggerBundle" => TRUE,
+        "DataQualityBundle\\DataQualityBundle" => TRUE,
+        "DataImportBundle\\DataImportBundle" => TRUE
+    ]
+];

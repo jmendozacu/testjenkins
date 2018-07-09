@@ -1,0 +1,25 @@
+#stage
+deployment:
+  user: ec2-user
+  from: ./
+  to: /opt/buildcode
+  excludes:
+    - var/cache
+    - var/sessions
+    - var/versions
+    - var/config
+    - web/var
+releases:
+  enabled: true
+  max: 10
+  symlink: current
+  directory: releases
+hosts:
+  - 34.242.159.23
+tasks:
+  pre-deploy:
+  on-deploy:
+    - general/manual:
+      - /bin/bash /opt/buildcode/confscripts/deployment.sh
+  post-release:
+  post-deploy:

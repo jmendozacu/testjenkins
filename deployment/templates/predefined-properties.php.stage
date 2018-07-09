@@ -1,0 +1,17 @@
+<?php 
+
+return [
+    1 => [
+        "id" => 1,
+        "name" => "country",
+        "description" => "",
+        "key" => "country",
+        "type" => "text",
+        "data" => "",
+        "config" => NULL,
+        "ctype" => "object",
+        "inheritable" => TRUE,
+        "creationDate" => 1515501455,
+        "modificationDate" => 1518681928
+    ]
+];
