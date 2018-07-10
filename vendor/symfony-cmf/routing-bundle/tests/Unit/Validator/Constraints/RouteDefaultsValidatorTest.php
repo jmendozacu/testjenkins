@@ -3,7 +3,7 @@
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,11 +12,26 @@
 namespace Symfony\Cmf\Bundle\RoutingBundle\Tests\Unit\Validator\Constraints;
 
 use Symfony\Cmf\Bundle\RoutingBundle\Validator\Constraints\RouteDefaults;
+use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
 
-abstract class RouteDefaultsValidatorTest extends AbstractConstraintValidatorTest
+/*
+ * @Todo: Remove this when we drop Symfony 2.x support
+ */
+if (!class_exists(ConstraintValidatorTestCase::class)) {
+    abstract class HackBaseClass extends AbstractConstraintValidatorTest
+    {
+    }
+} else {
+    abstract class HackBaseClass extends ConstraintValidatorTestCase
+    {
+    }
+}
+
+abstract class RouteDefaultsValidatorTest extends HackBaseClass
 {
     protected $controllerResolver;
+
     protected $engine;
 
     public function testCorrectControllerPath()

@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "b53d8ee0bda3114e566999b06e981861",
@@ -1033,20 +1033,20 @@
         },
         {
             "name": "doctrine/inflector",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "e11d84c6e018beedd929cff5220969a3c6d1d462"
+                "reference": "5527a48b7313d15261292c149e55e26eae771b0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/e11d84c6e018beedd929cff5220969a3c6d1d462",
-                "reference": "e11d84c6e018beedd929cff5220969a3c6d1d462",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/5527a48b7313d15261292c149e55e26eae771b0a",
+                "reference": "5527a48b7313d15261292c149e55e26eae771b0a",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0"
+                "php": "^7.1"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.2"
@@ -1054,7 +1054,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2.x-dev"
+                    "dev-master": "1.3.x-dev"
                 }
             },
             "autoload": {
@@ -1096,7 +1096,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2017-07-22T12:18:28+00:00"
+            "time": "2018-01-09T20:05:19+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -2477,25 +2477,28 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.7.0",
+            "version": "1.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e"
+                "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e",
-                "reference": "3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8",
+                "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.6 || ^7.0"
+                "php": "^7.1"
+            },
+            "replace": {
+                "myclabs/deep-copy": "self.version"
             },
             "require-dev": {
                 "doctrine/collections": "^1.0",
                 "doctrine/common": "^2.6",
-                "phpunit/phpunit": "^4.1"
+                "phpunit/phpunit": "^7.1"
             },
             "type": "library",
             "autoload": {
@@ -2518,7 +2521,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2017-10-19T19:58:43+00:00"
+            "time": "2018-06-11T23:09:50+00:00"
         },
         {
             "name": "myclabs/php-enum",
@@ -4266,31 +4269,30 @@
         },
         {
             "name": "symfony-cmf/routing",
-            "version": "2.0.3",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony-cmf/Routing.git",
-                "reference": "215da2d995f6877f76859e7815b24413c469f6c2"
+                "reference": "7370dfb0ef9803d9d84f74d023c9f0f66eb13125"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony-cmf/Routing/zipball/215da2d995f6877f76859e7815b24413c469f6c2",
-                "reference": "215da2d995f6877f76859e7815b24413c469f6c2",
+                "url": "https://api.github.com/repos/symfony-cmf/Routing/zipball/7370dfb0ef9803d9d84f74d023c9f0f66eb13125",
+                "reference": "7370dfb0ef9803d9d84f74d023c9f0f66eb13125",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.6.0|^7.0",
+                "php": "^7.1",
                 "psr/log": "^1.0",
-                "symfony/http-kernel": "^2.8|^3.0",
-                "symfony/routing": "^2.8|^3.0"
+                "symfony/http-kernel": "^2.8 || ^3.3 || ^4.0",
+                "symfony/routing": "^2.8 || ^3.3 || ^4.0"
             },
             "require-dev": {
-                "friendsofsymfony/jsrouting-bundle": "^1.1",
-                "symfony-cmf/testing": "^2.0",
-                "symfony/config": "^2.8|^3.0",
-                "symfony/dependency-injection": "^2.8|^3.0",
-                "symfony/event-dispatcher": "^2.8|^3.0",
-                "symfony/phpunit-bridge": "^3.2"
+                "symfony-cmf/testing": "^2.1.0",
+                "symfony/config": "^2.8 || ^3.3 || ^4.0",
+                "symfony/dependency-injection": "^2.8 || ^3.3 || ^4.0",
+                "symfony/event-dispatcher": "^2.8 || ^3.3 || ^4.0",
+                "symfony/phpunit-bridge": "^3.3 || ^4.0"
             },
             "suggest": {
                 "symfony/event-dispatcher": "DynamicRouter can optionally trigger an event at the start of matching. Minimal version (~2.1)"
@@ -4298,7 +4300,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "2.1-dev"
                 }
             },
             "autoload": {
@@ -4322,39 +4324,41 @@
                 "database",
                 "routing"
             ],
-            "time": "2017-12-07T14:05:09+00:00"
+            "time": "2018-06-14T06:42:21+00:00"
         },
         {
             "name": "symfony-cmf/routing-bundle",
-            "version": "2.0.3",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony-cmf/routing-bundle.git",
-                "reference": "ebc63f97f47f7c21ce3c61c38538522eaae428ab"
+                "reference": "0984ef5acbd6a75d518d68f6b5a9d805861a9445"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony-cmf/routing-bundle/zipball/ebc63f97f47f7c21ce3c61c38538522eaae428ab",
-                "reference": "ebc63f97f47f7c21ce3c61c38538522eaae428ab",
+                "url": "https://api.github.com/repos/symfony-cmf/routing-bundle/zipball/0984ef5acbd6a75d518d68f6b5a9d805861a9445",
+                "reference": "0984ef5acbd6a75d518d68f6b5a9d805861a9445",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.6|^7.0",
-                "symfony-cmf/routing": "^2.0",
-                "symfony/framework-bundle": "^2.8|^3.0",
-                "symfony/twig-bundle": "^2.8|^3.0"
+                "php": "^7.1",
+                "symfony-cmf/routing": "^2.1.0",
+                "symfony/framework-bundle": "^2.8 || ^3.3 || ^4.0",
+                "twig/twig": "^1.35 || ^2.4.4"
             },
             "conflict": {
-                "doctrine/phpcr-odm": "<1.4"
+                "doctrine/phpcr-odm": "<1.4",
+                "phpunit/phpunit": "<5.7"
             },
             "require-dev": {
                 "doctrine/data-fixtures": "^1.0.0",
                 "doctrine/orm": "^2.5",
-                "doctrine/phpcr-odm": "^1.4",
-                "matthiasnoback/symfony-config-test": "^1.3.1",
-                "matthiasnoback/symfony-dependency-injection-test": "~0.6",
-                "symfony-cmf/testing": "^2.0",
-                "symfony/phpunit-bridge": "^3.2"
+                "doctrine/phpcr-odm": "^1.4|^2.0",
+                "matthiasnoback/symfony-config-test": "^2.2",
+                "matthiasnoback/symfony-dependency-injection-test": "^1.0",
+                "symfony-cmf/testing": "^2.1.0",
+                "symfony/phpunit-bridge": "^3.3 || ^4.0",
+                "symfony/validator": "^2.8 || ^3.3 || ^4.0"
             },
             "suggest": {
                 "doctrine/orm": "To enable support for the ORM entities (^2.5)",
@@ -4364,7 +4368,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "2.1-dev"
                 }
             },
             "autoload": {
@@ -4388,7 +4392,7 @@
                 "database",
                 "routing"
             ],
-            "time": "2018-01-22T07:32:57+00:00"
+            "time": "2018-06-18T14:20:39+00:00"
         },
         {
             "name": "symfony/monolog-bundle",

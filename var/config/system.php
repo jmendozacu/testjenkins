@@ -10,7 +10,7 @@ return [
         "params" => [
             "username" => "root",
             "password" => "root",
-            "dbname" => "testjenkins",
+            "dbname" => "pimcore1",
             "host" => "localhost",
             "port" => 3306
         ]

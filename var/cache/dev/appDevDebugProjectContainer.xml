@@ -121,7 +121,7 @@
     <parameter key="pimcore_system_config.general.validLanguages">en</parameter>
     <parameter key="pimcore_system_config.database.params.username">root</parameter>
     <parameter key="pimcore_system_config.database.params.password">root</parameter>
-    <parameter key="pimcore_system_config.database.params.dbname">testjenkins</parameter>
+    <parameter key="pimcore_system_config.database.params.dbname">pimcore1</parameter>
     <parameter key="pimcore_system_config.database.params.host">localhost</parameter>
     <parameter key="pimcore_system_config.database.params.port">3306</parameter>
     <parameter key="pimcore_system_config.documents.versions.steps">10</parameter>
@@ -5135,18 +5135,7 @@
     <service id="cmf_routing.validator.route_defaults" class="Symfony\Cmf\Bundle\RoutingBundle\Validator\Constraints\RouteDefaultsTemplatingValidator">
       <tag name="validator.constraint_validator" alias="cmf_routing.validator.route_defaults"/>
       <argument type="service" id="debug.controller_resolver"/>
-      <argument type="service">
-        <service class="Symfony\Bundle\FrameworkBundle\Templating\DelegatingEngine" public="false">
-          <argument type="service" id="service_container"/>
-          <argument type="collection"/>
-          <call method="addEngine">
-            <argument type="service" id="templating.engine.php"/>
-          </call>
-          <call method="addEngine">
-            <argument type="service" id="templating.engine.twig"/>
-          </call>
-        </service>
-      </argument>
+      <argument type="service" id="templating.engine.delegating"/>
     </service>
     <service id="presta_sitemap.generator_default" class="Presta\SitemapBundle\Service\Generator">
       <argument type="service" id="debug.event_dispatcher"/>
@@ -5292,7 +5281,7 @@
         <argument key="driver">pdo_mysql</argument>
         <argument key="host">localhost</argument>
         <argument key="port">3306</argument>
-        <argument key="dbname">testjenkins</argument>
+        <argument key="dbname">pimcore1</argument>
         <argument key="user">root</argument>
         <argument key="password">root</argument>
         <argument key="charset">UTF8MB4</argument>
@@ -9558,7 +9547,7 @@
     <service id="cache.default_memcached_provider" alias="cache_connection.jke6kex" public="false"/>
     <service id="Symfony\Component\HttpKernel\Debug\FileLinkFormatter" alias="debug.file_link_formatter" public="false"/>
     <service id="Symfony\Component\Stopwatch\Stopwatch" alias="debug.stopwatch" public="false"/>
-    <service id="router" alias="cmf_routing.router"/>
+    <service id="router" alias="cmf_routing.router" public="true"/>
     <service id="Symfony\Component\Routing\RouterInterface" alias="cmf_routing.router" public="false"/>
     <service id="Symfony\Component\Routing\Generator\UrlGeneratorInterface" alias="cmf_routing.router" public="false"/>
     <service id="Symfony\Component\Routing\Matcher\UrlMatcherInterface" alias="cmf_routing.router" public="false"/>
@@ -9595,7 +9584,7 @@
     <service id="security.user_checker.admin" alias="security.user_checker" public="false"/>
     <service id="security.user_checker.webservice" alias="security.user_checker" public="false"/>
     <service id="Symfony\Component\Security\Core\User\UserCheckerInterface" alias="security.user_checker" public="false"/>
-    <service id="cmf_routing.route_provider" alias="Pimcore\Routing\DynamicRouteProvider"/>
+    <service id="cmf_routing.route_provider" alias="Pimcore\Routing\DynamicRouteProvider" public="true"/>
     <service id="presta_sitemap.generator" alias="presta_sitemap.generator_default" public="true"/>
     <service id="presta_sitemap.dumper" alias="presta_sitemap.dumper_default" public="true"/>
     <service id="Doctrine\DBAL\Driver\Connection" alias="doctrine.dbal.default_connection" public="false"/>

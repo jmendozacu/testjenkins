@@ -28,7 +28,7 @@ final class Versions
   'doctrine/doctrine-bundle' => '1.6.13@8cd4c2921b6cef14a78d98cd3f0fb81ba6a976f9',
   'doctrine/doctrine-cache-bundle' => '1.3.3@4c8e363f96427924e7e519c5b5119b4f54512697',
   'doctrine/doctrine-migrations-bundle' => 'v1.2.1@6276139e0b913a4e5120fc36bb5b0eae8ac549bc',
-  'doctrine/inflector' => 'v1.2.0@e11d84c6e018beedd929cff5220969a3c6d1d462',
+  'doctrine/inflector' => 'v1.3.0@5527a48b7313d15261292c149e55e26eae771b0a',
   'doctrine/instantiator' => '1.0.5@8e884e78f9f0eb1329e445619e04456e64d8051d',
   'doctrine/lexer' => 'v1.0.1@83893c552fd2045dd78aef794c31e694c37c0b8c',
   'doctrine/migrations' => 'v1.5.0@c81147c0f2938a6566594455367e095150547f72',
@@ -53,7 +53,7 @@ final class Versions
   'monolog/monolog' => '1.23.0@fd8c787753b3a2ad11bc60c063cff1358a32a3b4',
   'mpratt/embera' => '1.9.3@45c380c40f6d08687c193c685a7ebd3f3db27811',
   'mustangostang/spyc' => '0.6.2@23c35ae854d835f2d7bcc3e3ad743d7e57a8c14d',
-  'myclabs/deep-copy' => '1.7.0@3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e',
+  'myclabs/deep-copy' => '1.8.1@3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8',
   'myclabs/php-enum' => '1.6.1@8c5649e4ed99acd53a40eada270154dcac089f7e',
   'neitanod/forceutf8' => 'v2.0.1@47c883ab2739e7938a8bb0bfd1c29d48c88858de',
   'nesbot/carbon' => '1.32.0@64563e2b9f69e4db1b82a60e81efa327a30ff343',
@@ -86,8 +86,8 @@ final class Versions
   'sensiolabs/ansi-to-html' => 'v1.1.3@8b5d787dca714bd98dd770c078d76528320a8286',
   'sensiolabs/security-checker' => 'v4.1.8@dc270d5fec418cc6ac983671dba5d80ffaffb142',
   'swiftmailer/swiftmailer' => 'v5.4.9@7ffc1ea296ed14bf8260b6ef11b80208dbadba91',
-  'symfony-cmf/routing' => '2.0.3@215da2d995f6877f76859e7815b24413c469f6c2',
-  'symfony-cmf/routing-bundle' => '2.0.3@ebc63f97f47f7c21ce3c61c38538522eaae428ab',
+  'symfony-cmf/routing' => '2.1.0@7370dfb0ef9803d9d84f74d023c9f0f66eb13125',
+  'symfony-cmf/routing-bundle' => '2.1.0@0984ef5acbd6a75d518d68f6b5a9d805861a9445',
   'symfony/monolog-bundle' => 'v3.3.0@8204f3cd7c1bd6a6e2955c0a34475243a7bd9802',
   'symfony/polyfill-apcu' => 'v1.8.0@9b83bd010112ec196410849e840d9b9fefcb15ad',
   'symfony/polyfill-ctype' => 'v1.8.0@7cc359f1b7b80fc25ed7796be7d96adc9b354bae',
@@ -143,7 +143,7 @@ final class Versions
   'sebastian/version' => '2.0.1@99732be0ddb3361e16ad77b68ba41efc8e979019',
   'theseer/tokenizer' => '1.1.0@cb2f008f3f05af2893a87208fe6a6c4985483f8b',
   'webmozart/assert' => '1.3.0@0df1908962e7a3071564e857d86874dad1ef204a',
-  'pimcore/pimcore' => 'dev-master@803df29ea4a4c300a3efb5cdd924994c8263dcaa',
+  'pimcore/pimcore' => 'dev-master@d0c9761da3866a996ff4d5bee3b80ec4b19d6d93',
 );
 
     private function __construct()

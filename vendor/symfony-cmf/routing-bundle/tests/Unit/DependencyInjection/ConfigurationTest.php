@@ -3,7 +3,7 @@
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -78,7 +78,7 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
         ];
 
         $formats = array_map(function ($path) {
-            return __DIR__.'/../../Resources/Fixtures/'.$path;
+            return __DIR__.'/../../Fixtures/fixtures/'.$path;
         }, [
             'config/config.yml',
             'config/config.xml',
