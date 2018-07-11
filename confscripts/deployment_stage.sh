@@ -12,8 +12,16 @@ echo "current directory: ${currDir}"
 echo "Copying configurations to right place"
 mv ${projectDir}/var/config/system.php ${projectDir}/var/config/system.php.bak${timestamp}
 mv conffiles/system.php.${env} ${projectDir}/var/config/system.php
+rm -f ${projectDir}/var/config/system.php.bak${timestamp}
 mv ${apacheDir}/httpd.conf ${apacheDir}/httpd.conf.bak${timestamp}
 mv conffiles/httpd.conf.${env} ${apacheDir}/httpd.conf
+rm -f ${apacheDir}/httpd.conf.bak${timestamp}
+mv ${projectDir}/web/.htaccess ${projectDir}/web/.htaccess.bak${timestamp} 
+mv conffiles/.htaccess.${env} ${projectDir}/web
+rm -f ${projectDir}/web/.htaccess.bak${timestamp}
+mv ${projectDir}/composer.json ${projectDir}/composer.json.bak${timestamp}
+mv conffiles/composer.json ${projectDir}
+rm -f ${projectDir}/composer.json.bak${timestamp}
 echo "Restarting Apache"
 service httpd restart
 echo "Copying app folder...."

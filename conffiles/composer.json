@@ -1,0 +1,93 @@
+{
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": "^7.0",
+        "cocur/slugify": "^3.1",
+        "html2text/html2text": "^4.1",
+        "pimcore/advanced-object-search": "^1.3",        
+        "pimcore/pimcore" : "^5.2.3"
+    }, 
+    "require-dev": {
+        "codeception/codeception": "^2.4",
+        "friendsofphp/php-cs-fixer": "^2.12",
+        "php-mock/php-mock-prophecy": "^0.0.2",
+        "phpunit/phpunit": "~6",
+        "magephp/magallanes": "~1.1"
+    }, 
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true,
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {
+            "AppBundle\\": "src/AppBundle",
+            "SeoBundle\\": "src/SeoBUndle",            
+            "Pimcore\\Model\\DataObject\\": "var/classes/DataObject",
+            "Pimcore\\Model\\Object\\": "var/classes/Object",
+            "Pimcore\\Model\\": "vendor/pimcore/pimcore/pimcore/models",
+            "Pimcore\\Tests\\": "vendor/pimcore/pimcore/pimcore/tests/_support",
+            "Pimcore\\": "vendor/pimcore/pimcore/pimcore/lib/Pimcore"
+        },
+       "classmap": [
+            "vendor/pimcore/pimcore/app/AppKernel.php",
+            "vendor/pimcore/pimcore/pimcore/lib/Pimcore.php"
+        ],
+        "exclude-from-classmap": [
+            "install-profiles/",
+            "vendor/pimcore/pimcore/pimcore/lib/compatibility-stubs.php",
+            "vendor/pimcore/pimcore/pimcore/lib/Pimcore/Bundle/EcommerceFrameworkBundle/config/namespace_compatibility.php"
+        ]
+    },
+    
+    "scripts": {
+        "symfony-scripts": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache", 
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets", 
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFiles", 
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget" 
+        ],
+        "post-install-cmd": [
+            "@deploy-pimcore-files",
+            "Pimcore\\Composer::postInstall",
+            "@symfony-scripts"
+        ],
+        "post-update-cmd": [
+            "@deploy-pimcore-files",
+            "Pimcore\\Composer::postUpdate",
+            "@symfony-scripts"
+        ],
+        "deploy-pimcore-files":[
+            "\n# Cleaning up the root folder from old pimcore files:*.",
+            "bash -c 'rm -rf ./{install-profiles,pimcore}' || true",
+            "bash -c 'rm -rf ./bin/{console,install}' || true",
+            "bash -c 'rm -rf ./web/{app.php,install.php.pimcore,.htaccess}' || true",
+            "\n# Deploying Pimcore core files into root project folder:*.",
+            "bash -c 'ln -s vendor/pimcore/pimcore/{install-profiles,pimcore} ./' || true",
+            "bash -c 'cp -r vendor/pimcore/pimcore/bin/{console,install} ./bin' || true",
+            "bash -c 'cp -r vendor/pimcore/pimcore/web/{app.php,install.php,pimcore,.htaccess} ./web' || true"
+          ]
+    },
+    "extra": {
+    "symfony-app-dir": "app",
+    "symfony-bin-dir": "bin",
+    "symfony-var-dir": "var",
+    "symfony-web-dir": "web",
+    "symfony-tests-dir": "tests",
+    "symfony-assets-install": "relative",
+    "merge-plugin": {
+      "include": [
+        "composer.local.json"
+      ],
+      "recurse": true,
+      "replace": false,
+      "merge-dev": true,
+      "merge-extra": false,
+      "merge-extra-deep": false,
+      "merge-scripts": false
+    }
+    }
+}
